@@ -1,0 +1,26 @@
+{
+  "name": "croquet-video-example",
+  "version": "1.0.0",
+  "description": "Simple example Croquet application used during a video overview of Croquet.",
+  "main": "src/script.js",
+  "scripts": {
+    "start": "parcel src/*.html -p 9009",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/croquet/croquet-video-example.git"
+  },
+  "author": "Jess Martin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/croquet/croquet-video-example/issues"
+  },
+  "homepage": "https://github.com/croquet/croquet-video-example#readme",
+  "dependencies": {
+    "@croquet/croquet": "^1.0.5"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}
