@@ -18,6 +18,7 @@ MyModel.register("MyModel");
 class MyView extends Croquet.View {
   constructor(model) {
     super(model);
+    todoList.innerHTML = "";
     model.todos.forEach((element) => this.addTodo(element));
 
     createTodo.onclick = event => this.publish("todo", "add", message.value)
@@ -25,7 +26,6 @@ class MyView extends Croquet.View {
   }
 
   addTodo(todoText) {
-    console.log("adding todo");
     const todo = document.createElement("li");
     todo.innerText = todoText;
     todoList.appendChild(todo);
