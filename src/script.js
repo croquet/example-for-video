@@ -1,5 +1,3 @@
-// Croquet Corporation 
-// 2021
 import * as Croquet from "@croquet/croquet";
 
 class MyModel extends Croquet.Model {
