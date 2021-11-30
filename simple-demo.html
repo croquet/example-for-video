@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/@croquet/croquet@1.0"></script>
+  </head>
+  <body>
+    <script>
+      class Dice extends Croquet.Model {
+        init() {
+          this.roll = 1;
+          this.subscribe("dice", "roll", () => {
+            this.roll = Math.floor(Math.random() * 6) + 1;
+            this.publish("dice", "update");
+          });
+        }
+      }
+      Dice.register("Dice");
+
+      class Display extends Croquet.View {
+        constructor(model) {
+          super(model);
+          diceRoll.textContent = model.roll;
+
+          rollButton.onclick = (event) => {
+            this.publish("dice", "roll");
+          };
+
+          this.subscribe("dice", "update", () => {
+            diceRoll.textContent = model.roll;
+          });
+        }
+      }
+
+      Croquet.Session.join({
+        apiKey: "18fIEcbGu1vlEAc4bnppPMtIccJ5xIn6J1dJGMeay",
+        appId: "io.croquet.video-example",
+        name: Croquet.App.autoSession(),
+        password: Croquet.App.autoPassword(),
+        model: Dice,
+        view: Display,
+      });
+
+      Croquet.App.makeWidgetDock();
+    </script>
+
+    <h1 id="diceRoll">0</h1>
+    <button id="rollButton">Roll</button>
+  </body>
+</html>
