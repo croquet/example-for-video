@@ -72,6 +72,19 @@ this.subscribe("dice", "update", () => {
 });
 ```
 
+NARRATION: Finally, we connect to a Croquet session.
+
+```js
+Croquet.Session.join({
+  apiKey: "get-your-own-key!",
+  appId: "io.croquet.video-example",
+  name: Croquet.App.autoSession(),
+  password: Croquet.App.autoPassword(),
+  model: Dice,
+  view: Display,
+});
+```
+
 NARRATION: And we’re done! Simply scan the QR code in the lower left or share the session URL. Both clients will be perfectly in sync.
 
 VISUAL:
