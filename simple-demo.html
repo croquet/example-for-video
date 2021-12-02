@@ -7,10 +7,12 @@
       class Dice extends Croquet.Model {
         init() {
           this.roll = 1;
-          this.subscribe("dice", "roll", () => {
-            this.roll = Math.floor(Math.random() * 6) + 1;
-            this.publish("dice", "update");
-          });
+          this.subscribe("dice", "roll", this.rollDice);
+        }
+
+        rollDice() {
+          this.roll = Math.floor(Math.random() * 6) + 1;
+          this.publish("dice", "update");
         }
       }
       Dice.register("Dice");
