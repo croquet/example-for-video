@@ -55,19 +55,25 @@ rollButton.onclick = (event) => {
 };
 ```
 
-NARRATION: The model now needs to update the dice roll. Let's subscribe to the message and tell all the views what happened.
+NARRATION: The model now needs to update the dice roll. Let's subscribe to the message ...
 
 ```js
-this.subscribe("dice", "roll", () => {
+this.subscribe("dice", "roll", this.rollDice);
+```
+
+NARRATION: ... and tell all the views what happened.
+
+```js
+rollDice() {
   this.roll = Math.floor(Math.random() * 6) + 1;
-  this.publish("dice", "update");
-});
+  this.publish("dice", "changed");
+}
 ```
 
 NARRATION: Now we can have the view update the UI.
 
 ```js
-this.subscribe("dice", "update", () => {
+this.subscribe("dice", "changed", () => {
   diceRoll.textContent = model.roll;
 });
 ```
@@ -105,10 +111,12 @@ VISUAL:
       class Dice extends Croquet.Model {
         init() {
           this.roll = 1;
-          this.subscribe("dice", "roll", () => {
-            this.roll = Math.floor(Math.random() * 6) + 1;
-            this.publish("dice", "update");
-          });
+          this.subscribe("dice", "roll", this.rollDice);
+        }
+
+        rollDice() {
+          this.roll = Math.floor(Math.random() * 6) + 1;
+          this.publish("dice", "changed");
         }
       }
       Dice.register("Dice");
@@ -122,7 +130,7 @@ VISUAL:
             this.publish("dice", "roll");
           };
 
-          this.subscribe("dice", "update", () => {
+          this.subscribe("dice", "changed", () => {
             diceRoll.textContent = model.roll;
           });
         }
