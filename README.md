@@ -2,6 +2,13 @@
 
 This is a simple example of a Croquet application as used in our promotional video (link to be provided).
 
+## Running the example
+
+Click here to create a new session
+https://croquet.github.io/example-for-video/
+
+To join the session, share the session URL or scan the QR code in the lower left.
+
 ## Complete code for example
 
 See [index.html](index.html)
